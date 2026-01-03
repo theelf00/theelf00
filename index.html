@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Security Specialist | Penetration Testing & Red Team</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a2e 50%, #0a0a0a 100%);
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(0, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float 20s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Header Section */
+        header {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0.9) 0%, rgba(26, 10, 46, 0.9) 100%);
+        }
+
+        .hero-content {
+            z-index: 10;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .glitch {
+            font-size: 4em;
+            font-weight: 900;
+            text-transform: uppercase;
+            position: relative;
+            color: #00ffff;
+            letter-spacing: 0.1em;
+            animation: glitch-skew 2s infinite;
+            text-shadow: 
+                2px 2px 0 #ff00ff,
+                -2px -2px 0 #00ffff;
+        }
+
+        @keyframes glitch-skew {
+            0% {
+                transform: skew(0deg);
+            }
+            10% {
+                transform: skew(-2deg);
+            }
+            20% {
+                transform: skew(2deg);
+            }
+            30% {
+                transform: skew(0deg);
+            }
+            100% {
+                transform: skew(0deg);
+            }
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            margin-top: 20px;
+            color: #ff00ff;
+            animation: fadeIn 2s ease-out;
+            text-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 18px 50px;
+            background: linear-gradient(135deg, #00ffff 0%, #ff00ff 100%);
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            border-radius: 50px;
+            transition: all 0.4s;
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 15px 40px rgba(255, 0, 255, 0.5);
+            }
+        }
+
+        .cta-button:hover {
+            transform: scale(1.1) !important;
+            box-shadow: 0 20px 50px rgba(255, 0, 255, 0.6);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+            transform: translateY(-100px);
+            animation: slideDown 1s ease-out 0.5s forwards;
+        }
+
+        @keyframes slideDown {
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+        }
+
+        nav a {
+            color: #00ffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00ffff, #ff00ff);
+            transition: width 0.3s;
+        }
+
+        nav a:hover {
+            color: #ff00ff;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        h2 {
+            font-size: 3em;
+            text-align: center;
+            margin-bottom: 80px;
+            background: linear-gradient(135deg, #00ffff 0%, #ff00ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        /* About Section */
+        #about {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%);
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.3em;
+            line-height: 1.8;
+            color: #e0e0e0;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .skill-card {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, rgba(255, 0, 255, 0.1) 100%);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            transition: all 0.4s;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .skill-card:nth-child(1) { animation-delay: 0.1s; }
+        .skill-card:nth-child(2) { animation-delay: 0.2s; }
+        .skill-card:nth-child(3) { animation-delay: 0.3s; }
+        .skill-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .skill-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.2) 0%, rgba(255, 0, 255, 0.2) 100%);
+            box-shadow: 0 20px 60px rgba(0, 255, 255, 0.4);
+            border-color: #00ffff;
+        }
+
+        .skill-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+            display: block;
+            text-align: center;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .skill-card h3 {
+            color: #00ffff;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            text-align: center;
+        }
+
+        .skill-card ul {
+            list-style: none;
+            color: #e0e0e0;
+        }
+
+        .skill-card li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .skill-card li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #ff00ff;
+            font-size: 1.2em;
+        }
+
+        /* Certifications */
+        .certifications {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .cert-badge {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.2) 0%, rgba(255, 0, 255, 0.2) 100%);
+            padding: 25px 40px;
+            border-radius: 15px;
+            border: 2px solid #00ffff;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.4s;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cert-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .cert-badge:hover::before {
+            left: 100%;
+        }
+
+        .cert-badge:nth-child(1) { animation-delay: 0.1s; }
+        .cert-badge:nth-child(2) { animation-delay: 0.2s; }
+        .cert-badge:nth-child(3) { animation-delay: 0.3s; }
+        .cert-badge:nth-child(4) { animation-delay: 0.4s; }
+        .cert-badge:nth-child(5) { animation-delay: 0.5s; }
+
+        .cert-badge:hover {
+            transform: translateY(-10px) scale(1.1);
+            box-shadow: 0 15px 40px rgba(0, 255, 255, 0.5);
+            border-color: #ff00ff;
+        }
+
+        /* Projects */
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%);
+            padding: 40px;
+            border-radius: 20px;
+            border-left: 4px solid #00ffff;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-card:hover {
+            transform: translateX(10px);
+            border-left-width: 8px;
+            border-color: #ff00ff;
+            box-shadow: 0 20px 60px rgba(255, 0, 255, 0.3);
+        }
+
+        .project-card h3 {
+            color: #00ffff;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-card p {
+            color: #e0e0e0;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tech-tag {
+            background: rgba(0, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid #00ffff;
+            font-size: 0.9em;
+            color: #00ffff;
+            transition: all 0.3s;
+        }
+
+        .tech-tag:hover {
+            background: rgba(255, 0, 255, 0.3);
+            border-color: #ff00ff;
+            transform: scale(1.1);
+        }
+
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%);
+        }
+
+        .contact-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-content p {
+            font-size: 1.3em;
+            color: #e0e0e0;
+            margin-bottom: 40px;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 180px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.2) 0%, rgba(255, 0, 255, 0.2) 100%);
+            color: #00ffff;
+            text-decoration: none;
+            border-radius: 15px;
+            border: 2px solid #00ffff;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-link::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 0, 255, 0.4);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s, height 0.4s;
+        }
+
+        .contact-link:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .contact-link:hover {
+            border-color: #ff00ff;
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 255, 255, 0.4);
+        }
+
+        .contact-link span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 10, 10, 0.95);
+            text-align: center;
+            padding: 40px 0;
+            color: #888;
+            border-top: 1px solid rgba(0, 255, 255, 0.3);
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: scrollBounce 2s infinite;
+        }
+
+        @keyframes scrollBounce {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(20px);
+            }
+        }
+
+        .scroll-indicator::before {
+            content: '↓';
+            font-size: 3em;
+            color: #00ffff;
+        }
+
+        /* Additional Animations */
+        @keyframes trailFade {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Background grid animation */
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(50px, 50px);
+            }
+        }
+
+        /* Floating animation for skill icons */
+        .skill-icon {
+            transition: transform 0.6s ease;
+        }
+
+        /* Glow pulse for contact links */
+        @keyframes glowPulse {
+            0%, 100% {
+                box-shadow: 0 0 5px rgba(0, 255, 255, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(255, 0, 255, 0.6);
+            }
+        }
+
+        .contact-link {
+            animation: glowPulse 3s infinite;
+        }
+
+        /* Text shimmer effect */
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        .project-card h3:hover {
+            background: linear-gradient(90deg, #00ffff 0%, #ff00ff 50%, #00ffff 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 2s linear infinite;
+        }
+
+        /* Hover zoom for tech tags */
+        .tech-tag {
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .glitch {
+                font-size: 2.5em;
+            }
+
+            .subtitle {
+                font-size: 1.2em;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            h2 {
+                font-size: 2em;
+            }
+
+            .projects {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    <div class="particles" id="particles"></div>
+
+    <header>
+        <div class="hero-content">
+            <h1 class="glitch">CYBER SENTINEL</h1>
+            <p class="subtitle">Elite Penetration Tester & Red Team Operator</p>
+            <a href="#contact" class="cta-button">Let's Connect</a>
+        </div>
+        <div class="scroll-indicator"></div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#certs">Certifications</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="about">
+        <div class="container">
+            <h2>Who I Am</h2>
+            <div class="about-content">
+                <p>
+                    I'm a passionate cybersecurity professional specializing in offensive security operations. 
+                    With extensive experience in penetration testing and vulnerability assessment, I help organizations 
+                    identify and remediate security weaknesses before malicious actors can exploit them. My mission is 
+                    to strengthen digital defenses through ethical hacking and adversary emulation, constantly evolving 
+                    my skills to stay ahead of emerging threats.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2>Technical Arsenal</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <span class="skill-icon">🎯</span>
+                    <h3>Penetration Testing</h3>
+                    <ul>
+                        <li>Web Application Testing</li>
+                        <li>Network Penetration Testing</li>
+                        <li>Mobile Application Security</li>
+                        <li>API Security Assessment</li>
+                        <li>Cloud Security Testing</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <span class="skill-icon">⚔️</span>
+                    <h3>Tools & Frameworks</h3>
+                    <ul>
+                        <li>Metasploit / Cobalt Strike</li>
+                        <li>Burp Suite / OWASP ZAP</li>
+                        <li>Nmap / Nessus / OpenVAS</li>
+                        <li>Wireshark / tcpdump</li>
+                        <li>Bloodhound / Mimikatz</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <span class="skill-icon">💻</span>
+                    <h3>Programming</h3>
+                    <ul>
+                        <li>Python (Automation & Exploits)</li>
+                        <li>Bash / PowerShell Scripting</li>
+                        <li>C / C++ (Exploit Development)</li>
+                        <li>JavaScript (XSS & Client-side)</li>
+                        <li>SQL (Injection & Database)</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <span class="skill-icon">🛡️</span>
+                    <h3>Red Team Tactics</h3>
+                    <ul>
+                        <li>MITRE ATT&CK Framework</li>
+                        <li>Social Engineering</li>
+                        <li>Active Directory Attacks</li>
+                        <li>Phishing Campaigns</li>
+                        <li>Post-Exploitation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certs">
+        <div class="container">
+            <h2>Certifications</h2>
+            <div class="certifications">
+                <div class="cert-badge">OSCP</div>
+                <div class="cert-badge">CEH</div>
+                <div class="cert-badge">eJPT</div>
+                <div class="cert-badge">Security+</div>
+                <div class="cert-badge">PNPT</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2>Featured Projects</h2>
+            <div class="projects">
+                <div class="project-card">
+                    <h3>Enterprise Network Assessment</h3>
+                    <p>Conducted comprehensive penetration test for Fortune 500 company, identifying critical vulnerabilities in network infrastructure and Active Directory environment.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Network Pentesting</span>
+                        <span class="tech-tag">Active Directory</span>
+                        <span class="tech-tag">Lateral Movement</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>Web Application Security Audit</h3>
+                    <p>Performed black-box and gray-box testing on e-commerce platform, discovering multiple high-severity vulnerabilities including SQL injection and authentication bypass.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Web Security</span>
+                        <span class="tech-tag">OWASP Top 10</span>
+                        <span class="tech-tag">API Testing</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>Red Team Exercise</h3>
+                    <p>Participated in multi-week red team engagement simulating advanced persistent threat, achieving domain admin privileges through combined technical and social engineering tactics.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Red Teaming</span>
+                        <span class="tech-tag">Social Engineering</span>
+                        <span class="tech-tag">C2 Operations</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>Custom Exploit Development</h3>
+                    <p>Developed proof-of-concept exploits for undisclosed vulnerabilities, including buffer overflow and privilege escalation exploits for Windows and Linux systems.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Exploit Dev</span>
+                        <span class="tech-tag">Reverse Engineering</span>
+                        <span class="tech-tag">Binary Analysis</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>Cloud Security Assessment</h3>
+                    <p>Evaluated AWS infrastructure for misconfigurations and security gaps, identifying exposed S3 buckets, overly permissive IAM policies, and insecure Lambda functions.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Cloud Security</span>
+                        <span class="tech-tag">AWS</span>
+                        <span class="tech-tag">IAM</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>Automated Recon Framework</h3>
+                    <p>Built Python-based reconnaissance framework automating information gathering, subdomain enumeration, and vulnerability scanning for penetration testing engagements.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Automation</span>
+                        <span class="tech-tag">OSINT</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact-content">
+                <p>Ready to strengthen your security posture? Let's collaborate.</p>
+                <div class="contact-links">
+                    <a href="mailto:contact@example.com" class="contact-link">
+                        <span>📧 Email</span>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" class="contact-link">
+                        <span>💼 LinkedIn</span>
+                    </a>
+                    <a href="https://github.com" target="_blank" class="contact-link">
+                        <span>💻 GitHub</span>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" class="contact-link">
+                        <span>🐦 Twitter</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Cyber Sentinel | All security assessments conducted ethically with proper authorization</p>
+        </div>
+    </footer>
+
+    <script>
+        // Generate floating particles with varied effects
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 80; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            
+            // Randomize particle colors
+            const colors = ['rgba(0, 255, 255, 0.5)', 'rgba(255, 0, 255, 0.5)', 'rgba(255, 255, 255, 0.3)'];
+            particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+            particle.style.width = (Math.random() * 3 + 1) + 'px';
+            particle.style.height = particle.style.width;
+            
+            particlesContainer.appendChild(particle);
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Enhanced Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.skill-card, .project-card, .cert-badge').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mouse trail effect
+        let mouseTrail = [];
+        document.addEventListener('mousemove', (e) => {
+            const trail = document.createElement('div');
+            trail.style.position = 'fixed';
+            trail.style.width = '5px';
+            trail.style.height = '5px';
+            trail.style.borderRadius = '50%';
+            trail.style.background = 'radial-gradient(circle, rgba(0, 255, 255, 0.8), rgba(255, 0, 255, 0.4))';
+            trail.style.left = e.clientX + 'px';
+            trail.style.top = e.clientY + 'px';
+            trail.style.pointerEvents = 'none';
+            trail.style.zIndex = '9999';
+            trail.style.animation = 'trailFade 1s ease-out forwards';
+            
+            document.body.appendChild(trail);
+            mouseTrail.push(trail);
+            
+            if (mouseTrail.length > 20) {
+                const old = mouseTrail.shift();
+                if (old && old.parentNode) {
+                    old.parentNode.removeChild(old);
+                }
+            }
+            
+            setTimeout(() => {
+                if (trail.parentNode) {
+                    trail.parentNode.removeChild(trail);
+                }
+            }, 1000);
+        });
+
+        // Parallax effect on scroll
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const scrolled = window.pageYOffset;
+                    const parallaxElements = document.querySelectorAll('.skill-card, .project-card');
+                    
+                    parallaxElements.forEach((el, index) => {
+                        const rect = el.getBoundingClientRect();
+                        const speed = (index % 2 === 0) ? 0.5 : -0.5;
+                        if (rect.top < window.innerHeight && rect.bottom > 0) {
+                            el.style.transform = `translateY(${scrolled * speed * 0.05}px)`;
+                        }
+                    });
+                    
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // Typing effect for subtitle
+        const subtitle = document.querySelector('.subtitle');
+        const text = subtitle.textContent;
+        subtitle.textContent = '';
+        let i = 0;
+        
+        function typeWriter() {
+            if (i < text.length) {
+                subtitle.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+        
+        setTimeout(typeWriter, 1000);
+
+        // Random glitch effect
+        setInterval(() => {
+            const glitch = document.querySelector('.glitch');
+            glitch.style.animation = 'none';
+            setTimeout(() => {
+                glitch.style.animation = 'glitch-skew 2s infinite';
+            }, 10);
+        }, 5000);
+
+        // Skill card icon rotation on hover
+        document.querySelectorAll('.skill-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const icon = card.querySelector('.skill-icon');
+                icon.style.transform = 'rotate(360deg) scale(1.2)';
+                icon.style.transition = 'transform 0.6s ease';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                const icon = card.querySelector('.skill-icon');
+                icon.style.transform = 'rotate(0deg) scale(1)';
+            });
+        });
+
+        // Add ripple effect to buttons
+        document.querySelectorAll('.cta-button, .contact-link').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(255, 255, 255, 0.6)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s ease-out';
+                ripple.style.pointerEvents = 'none';
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Section reveal with scale animation
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'scale(1)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section h2').forEach(h2 => {
+            h2.style.opacity = '0';
+            h2.style.transform = 'scale(0.8)';
+            h2.style.transition = 'all 0.8s ease-out';
+            sectionObserver.observe(h2);
+        });
+    </script>
+</body>
+</html>
